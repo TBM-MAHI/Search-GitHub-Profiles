@@ -2,7 +2,7 @@
 
 ## Live Site [here]
 
-[here]:<https://GitHub-profile-Finder.tasnimulmahi.repl.co>
+[here]:<https://github-profile-finder.tasnimulmahi.repl.co/>
 <p align="center">
  
  <p>
