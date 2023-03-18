@@ -15,6 +15,7 @@ body{
     overflow: hidden;
 }
 .user-form{
+    position: relative;
     max-width: 700px;
     width: 100%;
 }
@@ -30,6 +31,18 @@ body{
     padding: 1rem;
     margin-bottom: 2rem;
     box-shadow: 0 5px 10px rgba(154,168,185,0.5);
+}
+.user-form button{
+    position: absolute;
+    top:0;
+    right: 0;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.user-form button i{
+    font-size: 2rem;;
 }
 .user-form input:focus{
     outline: none;
@@ -85,7 +98,10 @@ color: aliceblue;
     padding: 0.3em;
     border-radius: 5px;
 }
-
+p.repo{
+    display: block;
+    max-width: 6.5rem;
+}
 @media (max-width:600px){
     .card{
         max-width: 350px;
