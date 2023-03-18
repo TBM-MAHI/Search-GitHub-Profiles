@@ -51,6 +51,9 @@ body{
 .user-form input::placeholder{
 color: aliceblue;
 }
+#loading{
+    display: none;
+}
 .card{
     max-width: 800px;
     background-color: #4c2885;
@@ -101,6 +104,12 @@ color: aliceblue;
 p.repo{
     display: block;
     max-width: 6.5rem;
+}
+.connect,.connect a{
+   
+    text-decoration: none;
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
 }
 @media (max-width:600px){
     .card{

@@ -1,9 +1,8 @@
-const CLIENT_ID = "f3458ae48e1dd8666835";
-const CLIENT_SECRET = "86f1dc2cd633c86227010412c5c6c4285fda9570";
-
+import { CLIENT_SECRET,CLIENT_ID } from "./key.js";
 let search = document.getElementById("search");
 let form = document.getElementById("form");
 let main = document.getElementById("main");
+let load = document.getElementById("loading");
 
 async function getUserdata(profileName) {
   try {
@@ -18,18 +17,17 @@ async function getUserdata(profileName) {
   }
 }
 async function createUsercard(userData) {
-    let following = await axios.get(
-      `https://api.github.com/users/${userData.login}/following`
+  let following = await axios.get(
+    `https://api.github.com/users/${userData.login}/following`
+  );
+
+  let followers = await axios.get(
+    `https://api.github.com/users/${userData.login}/followers`
     );
-    
-    let followers = await axios.get(
-      `https://api.github.com/users/${userData.login}/followers`
-    );
-   
-    let repoURLtags = await createReposCard(userData.repos_url);
-    let socialURLtags = await createSocials(userData.login);
-    // console.log(repoURLtags);
-    let userCard = `
+let repoURLtags = await createReposCard(userData.repos_url);
+  let socialURLtags = await createSocials(userData.login);
+  // console.log(repoURLtags);
+  let userCard = `
      <div class="card">
         <div>
             <img src=${userData.avatar_url} alt="avatar" class="avatar">
@@ -47,26 +45,39 @@ async function createUsercard(userData) {
             <p class='repo'>repositories:</p>
                ${repoURLtags}
             </div>
-            <div class="connect">${socialURLtags}</div>
-        </div>
+         </div>
     </div>`;
-    main.innerHTML = userCard;
+  main.innerHTML = userCard;
+  if (socialURLtags) {
+        let connect = document.createElement("div");
+        connect.setAttribute("class", "connect");
+        let socpar = document.createElement("p");
+        socpar.setAttribute("class", "repo");
+        socpar.innerText = "Socials:";
+        connect.insertAdjacentElement("afterbegin", socpar);
+        connect.insertAdjacentHTML("beforeend", socialURLtags);
+        // console.log(connect);
+        main.children[0].children[1].insertAdjacentElement("beforeend", connect);
+    }
+     main.style.display = "block";
+     load.style.display = "none";
 }
 async function createReposCard(reposURL) {
   let repoURLtags = ``;
   try {
     let { data } = await axios.get(`${reposURL}?sort=updated`);
-    data.slice(0,9).forEach((repo) => {
+    data.slice(0, 9).forEach((repo) => {
       repoURLtags =
         repoURLtags +
         `<a href="${repo.html_url}" 
-              class="repo"
+            class="repo"
               target='_blank'>${repo.name}
               </a>`;
     });
     return repoURLtags;
+  } catch (err) {
+    console.log(err);
   }
-  catch (err) {console.log(err) }
 }
 
 async function createSocials(login) {
@@ -75,11 +86,9 @@ async function createSocials(login) {
   );
   let socialURLtags = ``;
   data.forEach((elem) => {
-    socialURLtags += `<a href="${elem.url}" target='_blank'><i class="fab fa-${elem.provider}"></i>
-                 </a>`;
+    socialURLtags += `<a href="${elem.url}" class="repo" target='_blank'><i class="fab fa-${elem.provider}"></i></a>`;
   });
-    console.log(socialURLtags);
-  return socialURLtags;
+    return socialURLtags;
 }
 
 function ceateErrorCard(msg) {
@@ -92,9 +101,11 @@ function ceateErrorCard(msg) {
 }
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  let profileName = search.value;
-  console.log(search.value);
-  getUserdata(profileName);
-  // search.value = "";
-});
+    e.preventDefault();
+    main.style.display = "none";
+    load.style.display = "block";
+    let profileName = search.value;
+    console.log(search.value);
+    getUserdata(profileName);
+    search.value = "";
+})

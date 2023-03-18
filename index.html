@@ -12,11 +12,14 @@
 </head>
 <body>
  <form class="user-form" id="form">
-    <input type="text"  id="search" placeholder="seacrc a profile">
+    <input type="text"  id="search" placeholder="search a GitHub profile by username">
     <button><i class="fas fa-search"></i></button>
  </form>
+ <div id="loading"><h2>fetching profile
+    <i class="fas fa-spinner fa-spin"></i>
+ </h2>
+</div>
  <main id="main">
-
  </main>
  <script src="script.js" type="module"></script>
  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
