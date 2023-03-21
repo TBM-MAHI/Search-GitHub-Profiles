@@ -11,9 +11,13 @@ async function getUserdata(profileName) {
     );
     createUsercard(data);
   } catch (err) {
-    if (err.response.status === 404)
+    main.style.display = "block";
+    load.style.display = "none";
+    console.log(err);
+    if (err.response.status === 404) 
       ceateErrorCard("No profile with this User Name");
-    else ceateErrorCard("Sorry bad requset try again");
+    else
+      ceateErrorCard("Sorry bad requset try again");
   }
 }
 async function createUsercard(userData) {
@@ -42,7 +46,7 @@ let repoURLtags = await createReposCard(userData.repos_url);
                 <li>${userData.public_repos}<strong>Repos</strong></li>
             </ul>
             <div class="repos">
-            <p class='repo'>repositories:</p>
+            <p class='repo'>latest repositories:</p>
                ${repoURLtags}
             </div>
          </div>

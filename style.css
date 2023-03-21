@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
 * {
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: 'Mulish', sans-serif;
     background-color: #2a2a77;
-    color :white;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,12 +16,14 @@ body{
     margin: 0;
     overflow: hidden;
 }
-.user-form{
+
+.user-form {
     position: relative;
     max-width: 700px;
     width: 100%;
 }
-.user-form input{
+
+.user-form input {
     font-size: 1rem;
     font-family: inherit;
     width: 100%;
@@ -27,101 +31,121 @@ body{
     background-color: #4c2885;
     border: none;
     border-radius: 10px;
-    color:white;
+    color: white;
     padding: 1rem;
     margin-bottom: 2rem;
-    box-shadow: 0 5px 10px rgba(154,168,185,0.5);
+    box-shadow: 0 5px 10px rgba(154, 168, 185, 0.5);
 }
-.user-form button{
+
+.user-form button {
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
     background: transparent;
     border: none;
     padding: 0.5rem 1rem;
     cursor: pointer;
 }
-.user-form button i{
-    font-size: 2rem;;
+
+.user-form button i {
+    font-size: 2rem;
+
 }
-.user-form input:focus{
+
+.user-form input:focus {
     outline: none;
 }
 
-.user-form input::placeholder{
-color: aliceblue;
+.user-form input::placeholder {
+    color: aliceblue;
 }
-#loading{
+
+#loading {
     display: none;
 }
-.card{
+
+.card {
     max-width: 800px;
     background-color: #4c2885;
     border-radius: 20px;
-    box-shadow: 0 5px 10px rgba(154,168,185,0.5) ;
+    box-shadow: 0 5px 10px rgba(154, 168, 185, 0.5);
     display: flex;
     padding: 3rem;
     margin: 0 1.5rem;
 }
 
-.avatar{
+.avatar {
     border-radius: 50%;
-    border:10px solid #2a2a72;
+    border: 10px solid #2a2a72;
     height: 150px;
     width: 150px;
 }
-.user-info{
+
+.user-info {
     color: aliceblue;
     margin-left: 2rem;
 }
-.user-info h2{
+
+.user-info h2 {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-.user-info ul{
+
+.user-info ul {
     display: flex;
     justify-content: space-between;
     list-style: none;
     padding: 0;
     width: 400px;
 }
+
 .user-info ul li strong {
     margin-left: 0.5rem;
     font-size: 1rem;
 }
 
-.repo{
+.repo {
     display: inline-block;
     text-decoration: none;
     color: aliceblue;
     background-color: #212a72;
     font-size: 1rem;
-    margin-left:0.5rem;
-    margin-bottom:0.5rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
     padding: 0.3em;
     border-radius: 5px;
 }
-p.repo{
+
+p.repo {
     display: block;
     max-width: 6.5rem;
 }
-.connect,.connect a{
-   
+
+.connect,
+.connect a {
+
     text-decoration: none;
     font-size: 1.8rem;
     margin-right: 0.5rem;
 }
-@media (max-width:600px){
-    .card{
+
+@media (max-width:600px) {
+    .user-form {
+        max-width: 500px;
+    }
+    .card {
         max-width: 350px;
         flex-direction: column;
         align-items: center;
     }
-    .user-form{
-        max-width: 500px;
+    .user-info,
+    .user-info ul {
+        max-width: 350px;
+        flex-direction: column;
     }
-    .user-info, .user-info ul  {
-    max-width: 350px;
-    flex-direction: column;
+
+    .user-info {
+        padding: 0.6rem;
+        margin-bottom: 2rem;
     }
 }
